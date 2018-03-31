@@ -76,12 +76,33 @@ function matchTest() {
 
 		// check cards for match
   	if (match[0].innerHTML === match[1].innerHTML) {
-	  	console.log("matched");
+  		console.log("matched");
+  		match = [];
+	  	deck.classList.remove("blocked");
 	  } else {
 	  	console.log("unmatched");
+	  	unmatched();
 	  }
 	}
 };
+
+
+// short delay when cards don't match
+function unmatched() {
+
+	setTimeout(function() {
+	  match[0].classList.remove("flipped", "blocked");
+		match[1].classList.remove("flipped", "blocked");
+
+		// remove block from deck
+		deck.classList.remove("blocked");
+
+		// empty match
+		match = [];
+
+		// delay
+	},300);
+}
 
 
 /*
