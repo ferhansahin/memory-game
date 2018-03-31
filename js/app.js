@@ -5,6 +5,8 @@
 const	cards 	= [...document.getElementsByClassName("card")],
 			deck 		= document.querySelector(".deck");
 
+let		match 	= [];
+
 
 /*
  * Display the cards on the page
@@ -24,14 +26,14 @@ function init() {
 
   // add html to page
 	shuffled.forEach (elem => {
-
 	  deck.appendChild(elem);
 
 	  // remove all other class names but card
 		elem.classList.remove("flipped", "matched", "blocked");
 
-    // add event listener on every card
+    // add event listeners on every card
 		elem.addEventListener("click", flipCard);
+		elem.addEventListener("click", matchTest);
 
 	});
 }
@@ -39,7 +41,7 @@ function init() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -58,6 +60,27 @@ function flipCard() {
 
   this.classList.toggle("flipped");
   this.classList.toggle("blocked");
+};
+
+
+// add flipped cards to [] and check if cards are matched or not
+function matchTest() {
+
+	// add clicked card to match array
+  match.push(this);
+
+  // if there's 2 cards, block all deck
+  const flipped = match.length;
+  if (flipped === 2) {
+  	deck.classList.add("blocked");
+
+		// check cards for match
+  	if (match[0].innerHTML === match[1].innerHTML) {
+	  	console.log("matched");
+	  } else {
+	  	console.log("unmatched");
+	  }
+	}
 };
 
 
