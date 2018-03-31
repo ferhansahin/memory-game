@@ -9,7 +9,8 @@ const	cards 	= [...document.getElementsByClassName("card")],
 			moves		= document.querySelector(".moves"),
 			star1		= document.getElementById("star1"),
 			star2		= document.getElementById("star2"),
-			star3		= document.getElementById("star3");
+			star3		= document.getElementById("star3"),
+			end			= document.getElementById("overlay");
 
 let		match 	= [],
 			move 		= 0;
@@ -154,6 +155,13 @@ function count() {
   } else if (move === 29) {
   	star1.style.visibility = "hidden";
   }
+}
+
+
+// modal from https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
+function overlay() {
+
+	end.style.visibility = (end.style.visibility == "visible") ? "hidden" : "visible";
 }
 
 
