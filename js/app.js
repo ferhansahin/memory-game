@@ -3,6 +3,7 @@
  */
 
 const	cards 	= [...document.getElementsByClassName("card")],
+			mCount 	= document.getElementsByClassName("matched"),
 			deck 		= document.querySelector(".deck");
 
 let		match 	= [];
@@ -76,11 +77,8 @@ function matchTest() {
 
 		// check cards for match
   	if (match[0].innerHTML === match[1].innerHTML) {
-  		console.log("matched");
-  		match = [];
-	  	deck.classList.remove("blocked");
+  		matched();
 	  } else {
-	  	console.log("unmatched");
 	  	unmatched();
 	  }
 	}
@@ -102,6 +100,25 @@ function unmatched() {
 
 		// delay
 	},300);
+}
+
+
+// when cards match add matched class
+function matched() {
+
+  match[0].classList.add("matched");
+  match[1].classList.add("matched");
+
+  // remove block from deck
+  deck.classList.remove("blocked");
+
+  // empty match
+  match = [];
+
+  // when all pairs matched, write to console
+  if (mCount.length === 16) {
+  	console.log("All paired!");
+  }
 }
 
 
