@@ -33,7 +33,7 @@ function init() {
 	deck.innerHTML = "";
 
   // add html to page
-	shuffled.forEach (elem => {
+	shuffled.forEach ((elem) => {
 	  deck.appendChild(elem);
 
 	  // remove all other class names but card

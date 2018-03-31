@@ -72,7 +72,7 @@ h1 {
     cursor: default;
 }
 
-.deck .card.blocked {
+.deck .card.blocked, deck.blocked {
     pointer-events: none;
     opacity: 0.9;
 }
@@ -81,11 +81,6 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
-}
-
-.deck.blocked {
-    pointer-events: none;
-    opacity: 0.9;
 }
 
 /*
@@ -141,4 +136,34 @@ h1 {
 
 #totalStar li {
     display: inline-block;
+}
+
+/*
+ * Media queries
+ */
+
+@media screen and (min-width: 300px) {
+
+    .container, #overlay {
+        transform: scale(.4, .4);
+    }
+}
+
+@media screen and (min-width: 400px) {
+
+    .container, #overlay {
+        transform: scale(.6, .6);
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .container, #overlay {
+        transform: scale(.8, .8);
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .container, #overlay {
+        transform: scale(1, 1);
+    }
 }
