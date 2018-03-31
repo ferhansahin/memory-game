@@ -1,7 +1,3 @@
-/*
- * Create a list that holds all of your cards
- */
-
 const	cards 	= [...document.getElementsByClassName("card")],
 			deck 		= document.querySelector(".deck"),
 			mCount 	= document.getElementsByClassName("matched"),
@@ -10,21 +6,22 @@ const	cards 	= [...document.getElementsByClassName("card")],
 			star1		= document.getElementById("star1"),
 			star2		= document.getElementById("star2"),
 			star3		= document.getElementById("star3"),
-			end			= document.getElementById("overlay");
+			end			= document.getElementById("overlay"),
+			mMove	 	= document.getElementById("totalMove"),
+			mStar  	= document.getElementById("totalStar"),
+			stars		= document.querySelector(".stars");
 
 let		match 	= [],
 			move 		= 0;
 
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-
 function init() {
+
+	// reset all
+	star1.style.visibility = "visible";
+	star2.style.visibility = "visible";
+	star3.style.visibility = "visible";
+	moves.innerHTML = 0;
 
 	// shuffle cards
 	const shuffled = shuffle(cards);
@@ -127,12 +124,15 @@ function matched() {
 
   // when all pairs matched, write to console
   if (mCount.length === 16) {
-  	console.log("All paired!");
+  	overlay();
   }
 }
 
 // restart button
 function reload() {
+
+	// clean stars from overlay
+	mStar.innerHTML = "";
 
 	// reset move
 	move = 0;
@@ -161,20 +161,12 @@ function count() {
 // modal from https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
 function overlay() {
 
+	// display moves and stars
+ 	mMove.innerText = moves.innerText;
+ 	mStar.innerHTML = stars.innerHTML;
+
 	end.style.visibility = (end.style.visibility == "visible") ? "hidden" : "visible";
 }
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 
 
 init();

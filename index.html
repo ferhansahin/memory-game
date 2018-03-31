@@ -13,7 +13,6 @@
     <div class="container">
         <header>
             <h1>Matching Game</h1>
-            <a href='#' onclick='overlay()'>Click here to show the overlay</a>
         </header>
 
         <section class="score-panel">
@@ -84,8 +83,11 @@
 
     <div id="overlay">
         <div class="modal">
-          <p>Overlay</p>
-          Click here to [<a href='#' onclick='overlay()'>close</a>]
+          <p>Congrats,</p>
+          <h2>You WON!</h2>
+          <p><span id="totalStar"></span></p>
+          <p><span id="totalMove"> </span> moves </p>
+          <button id="again" onclick="overlay();reload()">Again?</button>
         </div>
     </div>
 
