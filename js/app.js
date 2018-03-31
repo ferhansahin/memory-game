@@ -9,10 +9,13 @@ const	cards 	= [...document.getElementsByClassName("card")],
 			end			= document.getElementById("overlay"),
 			mMove	 	= document.getElementById("totalMove"),
 			mStar  	= document.getElementById("totalStar"),
-			stars		= document.querySelector(".stars");
+			stars		= document.querySelector(".stars"),
+			mSec  	= document.getElementById("totalSec"),
+			mMin  	= document.getElementById("totalMin");
 
 let		match 	= [],
-			move 		= 0;
+			move 		= 0,
+			elapsed ;
 
 
 function init() {
@@ -48,8 +51,8 @@ function init() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
 
+    let currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -57,7 +60,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -67,7 +69,7 @@ function flipCard() {
 
   this.classList.toggle("flipped");
   this.classList.toggle("blocked");
-};
+}
 
 
 // add flipped cards to [] and check if cards are matched or not
@@ -89,7 +91,7 @@ function matchTest() {
 	  	unmatched();
 	  }
 	}
-};
+}
 
 
 // short delay when cards don't match
@@ -137,6 +139,7 @@ function reload() {
 	// reset move
 	move = 0;
 
+	stopTimer();
 	init();
 }
 
@@ -146,6 +149,11 @@ function count() {
 
   move++;
   moves.innerHTML = move;
+
+  // start timer on first pair flipped
+  if (move === 1) {
+    timer();
+  }
 
   // more move = less stars
   if (move === 22) {
@@ -161,11 +169,30 @@ function count() {
 // modal from https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
 function overlay() {
 
+	stopTimer();
 	// display moves and stars
  	mMove.innerText = moves.innerText;
  	mStar.innerHTML = stars.innerHTML;
 
 	end.style.visibility = (end.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+
+// timer from http://logicalmoon.com/2015/05/using-javascript-to-create-a-timer/
+function timer() {
+
+	let seconds = 0;
+	elapsed = setInterval(function() {
+		seconds ++;
+		mSec.innerText = seconds % 60;
+		mMin.innerText = parseInt(seconds / 60);
+	}, 1000);
+}
+
+
+function stopTimer() {
+
+  clearInterval(elapsed);
 }
 
 
