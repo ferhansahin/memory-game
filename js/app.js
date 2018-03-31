@@ -6,15 +6,12 @@ const	cards 	= [...document.getElementsByClassName("card")],
 			deck 		= document.querySelector(".deck");
 
 
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
-
 
 
 function init() {
@@ -29,6 +26,13 @@ function init() {
 	shuffled.forEach (elem => {
 
 	  deck.appendChild(elem);
+
+	  // remove all other class names but card
+		elem.classList.remove("flipped", "matched", "blocked");
+
+    // add event listener on every card
+		elem.addEventListener("click", flipCard);
+
 	});
 }
 
@@ -47,6 +51,14 @@ function shuffle(array) {
 
     return array;
 }
+
+
+// to display card symbol add flipped and blocked class to cards
+function flipCard() {
+
+  this.classList.toggle("flipped");
+  this.classList.toggle("blocked");
+};
 
 
 /*
