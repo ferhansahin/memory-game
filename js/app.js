@@ -4,6 +4,7 @@
 
 const	cards 	= [...document.getElementsByClassName("card")],
 			mCount 	= document.getElementsByClassName("matched"),
+			restart	= document.querySelector(".score-panel .restart"),
 			deck 		= document.querySelector(".deck");
 
 let		match 	= [];
@@ -35,8 +36,10 @@ function init() {
     // add event listeners on every card
 		elem.addEventListener("click", flipCard);
 		elem.addEventListener("click", matchTest);
-
 	});
+
+	// listener for restart btn
+	restart.addEventListener("click", reload);
 }
 
 
@@ -120,6 +123,13 @@ function matched() {
   	console.log("All paired!");
   }
 }
+
+// restart button
+function reload() {
+
+	init();
+}
+
 
 
 /*
