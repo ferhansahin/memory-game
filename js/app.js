@@ -3,11 +3,16 @@
  */
 
 const	cards 	= [...document.getElementsByClassName("card")],
+			deck 		= document.querySelector(".deck"),
 			mCount 	= document.getElementsByClassName("matched"),
 			restart	= document.querySelector(".score-panel .restart"),
-			deck 		= document.querySelector(".deck");
+			moves		= document.querySelector(".moves"),
+			star1		= document.getElementById("star1"),
+			star2		= document.getElementById("star2"),
+			star3		= document.getElementById("star3");
 
-let		match 	= [];
+let		match 	= [],
+			move 		= 0;
 
 
 /*
@@ -76,6 +81,7 @@ function matchTest() {
   // if there's 2 cards, block all deck
   const flipped = match.length;
   if (flipped === 2) {
+  	count();
   	deck.classList.add("blocked");
 
 		// check cards for match
@@ -127,9 +133,28 @@ function matched() {
 // restart button
 function reload() {
 
+	// reset move
+	move = 0;
+
 	init();
 }
 
+
+// count moves and display stars
+function count() {
+
+  move++;
+  moves.innerHTML = move;
+
+  // more move = less stars
+  if (move === 22) {
+  	star3.style.visibility = "hidden";
+  } else if (move === 27) {
+    star2.style.visibility = "hidden";
+  } else if (move === 29) {
+  	star1.style.visibility = "hidden";
+  }
+}
 
 
 /*
