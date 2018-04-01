@@ -158,11 +158,10 @@ function count() {
   // more move = less stars
   if (move === 22) {
   	star3.style.visibility = "hidden";
-  } else if (move === 27) {
-    star2.style.visibility = "hidden";
   } else if (move === 29) {
-  	star1.style.visibility = "hidden";
+    star2.style.visibility = "hidden";
   }
+
 }
 
 
