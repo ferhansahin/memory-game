@@ -11,7 +11,9 @@ const	cards 	= [...document.getElementsByClassName("card")],
 			mStar  	= document.getElementById("totalStar"),
 			stars		= document.querySelector(".stars"),
 			mSec  	= document.getElementById("totalSec"),
-			mMin  	= document.getElementById("totalMin");
+			mMin  	= document.getElementById("totalMin"),
+			sec			= document.getElementById("seconds"),
+			min			= document.getElementById("minutes");
 
 let		match 	= [],
 			move 		= 0,
@@ -25,6 +27,8 @@ function init() {
 	star2.style.visibility = "visible";
 	star3.style.visibility = "visible";
 	moves.innerHTML = 0;
+	sec.innerText = 0;
+	min.innerText = 0;
 
 	// shuffle cards
 	const shuffled = shuffle(cards);
@@ -169,9 +173,11 @@ function count() {
 function overlay() {
 
 	stopTimer();
-	// display moves and stars
+	// display moves, stars and time
  	mMove.innerText = moves.innerText;
  	mStar.innerHTML = stars.innerHTML;
+	mMin.innerText = min.innerText;
+	mSec.innerText = sec.innerText;
 
 	end.style.visibility = (end.style.visibility == "visible") ? "hidden" : "visible";
 }
@@ -183,8 +189,8 @@ function timer() {
 	let seconds = 0;
 	elapsed = setInterval(function() {
 		seconds ++;
-		mSec.innerText = seconds % 60;
-		mMin.innerText = parseInt(seconds / 60);
+		sec.innerText = seconds % 60;
+		min.innerText = parseInt(seconds / 60);
 	}, 1000);
 }
 

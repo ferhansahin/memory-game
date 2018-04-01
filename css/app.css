@@ -110,6 +110,10 @@ h1 {
     cursor: pointer;
 }
 
+.time {
+    display: inline-block;
+}
+
 /*
  * Modal
  */
