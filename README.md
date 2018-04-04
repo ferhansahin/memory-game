@@ -1,10 +1,10 @@
-# Memory Game Project
+# Memory Game Project Udacity
 
-It's a project based on a starter project that display a static version of the Memory Game project that I had to convert into an interactive one.
+It's a project based on a Udacity starter project that display a static version of the Memory Game project that I had to convert into an interactive one, as a part of Udacityt Front-End Web Developer Nanodegree program.
 
 ## Accessing the game
 
-Folow link: https://gabrielrm.github.io/memory-game-udacity-project/
+Folow link: https://gabrielrm.github.io/memory-game/
 
 ## How to play
 
